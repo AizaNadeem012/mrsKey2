@@ -22,8 +22,8 @@ import { useState, useEffect } from "react";
 // ====================================================================
 // UPDATED IMAGE URLs from Unsplash (Placeholders)
 // ====================================================================
-const heroImage = "/public/hero.png"; 
-const storyImage = "/public/story.jpg"; 
+const heroImage = "/hero.png"; 
+const storyImage = "/story.jpg"; 
 // ====================================================================
 
 
