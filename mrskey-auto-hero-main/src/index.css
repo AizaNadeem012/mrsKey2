@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 68% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 68% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 68% 18%;
+
+    --primary: 220 68% 18%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 220 68% 18%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 25 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 85%;
+    --input: 220 15% 85%;
+    --ring: 220 68% 18%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens for locksmith theme */
+    --navy: 220 68% 18%;
+    --orange: 25 100% 50%;
+    --gradient-hero: linear-gradient(135deg, hsl(220 68% 18% / 0.95), hsl(220 68% 25% / 0.9));
+    --shadow-glow: 0 10px 40px hsl(25 100% 50% / 0.2);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 220 68% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 68% 15%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 68% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 220 68% 18%;
+
+    --secondary: 220 50% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 50% 20%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 25 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 50% 20%;
+    --input: 220 50% 20%;
+    --ring: 25 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-extrabold;
+  }
+}
