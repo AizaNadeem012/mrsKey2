@@ -107,7 +107,7 @@ const About = () => {
     "@type": "LocalBusiness",
     "name": "Mrs Key 2 BHP",
     "image": heroImage,
-    "telephone": "+44XXXXXXXXXX",
+    "telephone": "+07309 903243",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Manchester, UK",
@@ -136,7 +136,7 @@ const About = () => {
     "logo": "https://www.mrskey2bhp.co.uk/logo.png",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+44XXXXXXXXXX",
+      "telephone": "+07309 903243",
       "contactType": "emergency",
       "areaServed": "Manchester",
       "availableLanguage": ["English"]
@@ -464,7 +464,7 @@ const About = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+44XXXXXXXXXX"
+                href="tel:+07309 903243"
                 className="bg-white text-primary text-lg font-bold px-8 py-4 rounded-full shadow-lg hover:bg-primary-foreground hover:text-white transition transform hover:scale-105 flex items-center justify-center"
               >
                 <Phone className="w-5 h-5 mr-2" />
