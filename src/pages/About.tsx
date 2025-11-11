@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileCallButton from "@/components/MobileCallButton";
-import { Helmet } from "react-helmet";
 import {
   Shield,
   Award,
@@ -52,7 +52,7 @@ const faqs = [
   },
   {
     question: "Are your services insured and guaranteed?",
-    answer: "Yes, all our services are fully insured and come with a satisfaction guarantee. We use high-quality parts and provide warranty on all our work."
+    answer: "Yes, all our services are fully insured and come with a satisfaction guarantee. We use high-quality parts and provide a warranty on all our work."
   }
 ];
 
@@ -101,145 +101,83 @@ const testimonials = [
 ];
 
 const About = () => {
-  // JSON-LD for LocalBusiness
-  const localBusinessJSON = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Mrs Key 2 BHP",
-    "image": heroImage,
-    "telephone": "+07309 903243",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Manchester, UK",
-      "addressLocality": "Manchester",
-      "postalCode": "M1 XXX",
-      "addressCountry": "UK"
-    },
-    "url": "https://www.mrskey2bhp.co.uk",
-    "sameAs": [
-      "https://www.facebook.com/mrskey2bhp",
-      "https://www.instagram.com/mrskey2bhp",
-      "https://www.linkedin.com/company/mrskey2bhp"
-    ],
-    "openingHours": "Mo-Su 00:00-23:59",
-    "priceRange": "$$",
-    "servesCuisine": "Automotive Locksmith Services",
-    "description": "Manchester's trusted female-led mobile auto locksmith service. 24/7 service, precision, and peace of mind guaranteed."
-  };
-
-  // Organization JSON-LD
-  const organizationJSON = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Mrs Key 2 BHP",
-    "url": "https://www.mrskey2bhp.co.uk",
-    "logo": "https://www.mrskey2bhp.co.uk/logo.png",
-    "contactPoint": {
-      "@type": "ContactPoint",
+  // Update document title and meta tags
+  useEffect(() => {
+    document.title = "About Us | Mrs Key 2 BHP - Female-Led Mobile Auto Locksmith in Manchester";
+    
+    // Update or create meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.name = 'description';
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.content = "Mrs Key 2 BHP is Manchester's trusted female-led mobile auto locksmith service. 24/7 service, precision, and peace of mind guaranteed. Learn about our team, values, and commitment to customer safety.";
+    
+    // Update or create meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.name = 'keywords';
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = "auto locksmith Manchester, female locksmith Manchester, emergency locksmith, car key replacement, 24/7 locksmith, Manchester automotive security";
+    
+    // Update canonical link
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.rel = 'canonical';
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.href = "https://www.mrskey2bhp.co.uk/about";
+    
+    // Add structured data
+    const localBusinessJSON = {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Mrs Key 2 BHP",
+      "image": heroImage,
       "telephone": "+07309 903243",
-      "contactType": "emergency",
-      "areaServed": "Manchester",
-      "availableLanguage": ["English"]
-    },
-    "sameAs": [
-      "https://www.facebook.com/mrskey2bhp",
-      "https://www.instagram.com/mrskey2bhp",
-      "https://www.linkedin.com/company/mrskey2bhp"
-    ]
-  };
-
-  // FAQ JSON-LD
-  const faqJSON = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
-      }
-    }))
-  };
-
-  // Breadcrumb JSON-LD
-  const breadcrumbJSON = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.mrskey2bhp.co.uk"
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Manchester, UK",
+        "addressLocality": "Manchester",
+        "postalCode": "M1 XXX",
+        "addressCountry": "UK"
       },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "About",
-        "item": "https://www.mrskey2bhp.co.uk/about"
-      }
-    ]
-  };
+      "url": "https://www.mrskey2bhp.co.uk",
+      "sameAs": [
+        "https://www.facebook.com/mrskey2bhp",
+        "https://www.instagram.com/mrskey2bhp",
+        "https://www.linkedin.com/company/mrskey2bhp"
+      ],
+      "openingHours": "Mo-Su 00:00-23:59",
+      "priceRange": "$$",
+      "servesCuisine": "Automotive Locksmith Services",
+      "description": "Manchester's trusted female-led mobile auto locksmith service. 24/7 service, precision, and peace of mind guaranteed."
+    };
+
+    // Remove existing structured data if any
+    const existingScript = document.querySelector('script[type="application/ld+json"]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+    
+    // Add new structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(localBusinessJSON);
+    document.head.appendChild(script);
+    
+    // Clean up function
+    return () => {
+      // This would run when component unmounts
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Helmet>
-        {/* Primary Meta Tags */}
-        <title>About Us | Mrs Key 2 BHP - Female-Led Mobile Auto Locksmith in Manchester</title>
-        <meta
-          name="description"
-          content="Mrs Key 2 BHP is Manchester’s trusted female-led mobile auto locksmith service. 24/7 service, precision, and peace of mind guaranteed. Learn about our team, values, and commitment to customer safety."
-        />
-        <meta name="keywords" content="auto locksmith Manchester, female locksmith Manchester, emergency locksmith, car key replacement, 24/7 locksmith, Manchester automotive security" />
-        <meta name="author" content="Mrs Key 2 BHP" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.mrskey2bhp.co.uk/about" />
-        
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.mrskey2bhp.co.uk/about" />
-        <meta property="og:title" content="About Us | Mrs Key 2 BHP - Female-Led Mobile Auto Locksmith" />
-        <meta
-          property="og:description"
-          content="Trusted female-led mobile auto locksmith service in Manchester. Learn about our mission, team, and values."
-        />
-        <meta property="og:image" content={heroImage} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:site_name" content="Mrs Key 2 BHP" />
-        
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://www.mrskey2bhp.co.uk/about" />
-        <meta property="twitter:title" content="About Us | Mrs Key 2 BHP - Female-Led Mobile Auto Locksmith" />
-        <meta
-          property="twitter:description"
-          content="Trusted female-led mobile auto locksmith service in Manchester. Learn about our mission, team, and values."
-        />
-        <meta property="twitter:image" content={heroImage} />
-        <meta property="twitter:creator" content="@mrskey2bhp" />
-        
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify(localBusinessJSON)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(organizationJSON)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(faqJSON)}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify(breadcrumbJSON)}
-        </script>
-        
-        {/* Additional Meta Tags */}
-        <meta name="theme-color" content="#3b82f6" />
-        <meta name="msapplication-TileColor" content="#3b82f6" />
-        <meta name="application-name" content="Mrs Key 2 BHP" />
-      </Helmet>
-
       <Navbar />
 
       <main className="pt-20">
